@@ -10,25 +10,36 @@
 @import "./04-globals/footer";
 @import "./04-globals/layout";
 
-// * {
-//   outline: 1px solid hotpink;
-// }
-// body {
-//   font-family: "Lexend Deca", sans-serif;
-//   font-weight: 400;
-//   color: $white-transparent;
-//   background-color: $gray;
-//   font-size: 15px;
-//   line-height: 1.6;
-//   @media (min-width: $desktop) {
-//     display: grid;
-//     place-items: center;
-//   }
-// }
+$red: hsl(0, 78%, 62%);
+$cyan: hsl(180, 62%, 55%);
+$orange: hsl(34, 97%, 64%);
+$blue: hsl(212, 86%, 64%);
+$very-dark-blue: hsl(234, 12%, 34%);
+$grayish-blue: hsl(229, 6%, 66%);
+$very-light-gray: hsl(0, 0%, 98%);
+$desktop: 800px;
+
+* {
+  // outline: 1px solid hotpink;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: $very-dark-blue;
+  background-color: $very-light-gray;
+  font-size: 15px;
+  line-height: 1.6;
+  @media (min-width: $desktop) {
+    display: grid;
+    place-items: center;
+  }
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr calc(min(60ch, (100% - 64px))) 1fr;
   grid-column-gap: 32px;
+  padding: 85px 0;
 }
 
 .wrapper > * {
@@ -36,6 +47,107 @@
 }
 
 .full-bleed {
-  width: 100%;
-  grid-column: 1 / -1;
+  @media (min-width: $desktop) {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+}
+
+.intro {
+  text-align: center;
+
+  h1 {
+    font-weight: 200;
+    font-size: 24px;
+
+    @media (min-width: $desktop) {
+      font-size: 36px;
+    }
+
+    em {
+      font-style: normal;
+      font-weight: 600;
+    }
+  }
+
+  p {
+    opacity: 0.5;
+    text-align: center;
+    margin-bottom: 76px;
+
+    @media (min-width: $desktop) {
+      margin-bottom: 64px;
+    }
+  }
+
+  & > * + * {
+    margin-top: 16px;
+  }
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 0 15px 30px -11px rgba(131, 166, 210, 0.5);
+  border-radius: 8px;
+  padding: 28px;
+  border-top: 4px solid;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 222px;
+  background-position: bottom 28px right 28px;
+  background-size: 57px 57px;
+  background-repeat: no-repeat;
+
+  & ~ .card {
+    margin-top: 25px;
+  }
+
+  &--title {
+    font-size: 20px;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  p {
+    opacity: 0.5;
+    font-size: 13px;
+    letter-spacing: 0.09px;
+    line-height: 1.77;
+  }
+
+  &--supervisor {
+    border-color: $cyan;
+    background-image: url("../images/icon-supervisor.svg");
+    grid-area: a;
+  }
+  &--team {
+    border-color: $red;
+    background-image: url("../images/icon-team-builder.svg");
+    grid-area: b;
+
+    @media (min-width: $desktop) {
+      margin-top: 0 !important;
+    }
+  }
+  &--karma {
+    border-color: $orange;
+    background-image: url("../images/icon-karma.svg");
+    grid-area: d;
+  }
+  &--calc {
+    border-color: $blue;
+    background-image: url("../images/icon-calculator.svg");
+    grid-area: c;
+  }
+}
+
+@media (min-width: $desktop) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-template-rows: repeat(2, 250px);
+    grid-template-areas: "a b c" "a d c";
+    align-items: center;
+    gap: 30px;
+  }
 }
